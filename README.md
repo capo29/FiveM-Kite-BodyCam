@@ -25,9 +25,9 @@ That's it. Pretty straightforward.
 Edit `config.lua` to customize:
 
 ```lua
-Config.soundVolume = 0.05  -- Sound volume (default is pretty low because the sound files are LOUD)
-Config.Radius = 1.0         -- Notification radius (not really used but kept for compatibility)
-Config.Model = 'axon'      -- Set to 'axon' or 'reveal' (case sensitive!)
+Config.soundVolume = 0.05 
+Config.Radius = 1.0         
+Config.Model = 'axon'      
 ```
 
 The sound volume is set low by default because honestly, the sound files are deafening. Adjust as needed.
