@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <!-- Need to include jQuery! -->
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js" type="text/javascript"></script>
+        <script>
+            var audioPlayer = null;
+            // Listen for NUI Messages.
+            window.addEventListener('message', function(event) {
+                // Check for playSound transaction
+                if (event.data.transactionType == "playSound") {
+				
+                  if (audioPlayer != null) {
+                    audioPlayer.pause();
+                  }
+
+                  audioPlayer = new Howl({
+                    src: ["./sounds/" + event.data.transactionFile + ".ogg"], 
+                    autoplay: false, 
+                    loop: true, 
+                    volume: event.data.transactionVolume, 
+                    onend: function() {
+                    }
+                  });
+
+                  audioPlayer.play();
+
+                } else if (event.data.transactionType == "showAxon") {
+                  var div = document.getElementById("axonOverlay");
+                  if (event.data.show == true) {
+                    div.style.display = "block";
+
+                    document.getElementById("timestamp").innerHTML = event.data.timestamp;
+                  } else {
+                    div.style.display = "none";
+                  }
+                } else if (event.data.transactionType == "showReveal") {
+                  var div = document.getElementById("revealOverlay");
+                  if (event.data.show == true) {
+                    div.style.display = "block";
+
+                    document.getElementById("timestamp").innerHTML = event.data.timestamp;
+                  } else {
+                    div.style.display = "none";
+                  }
+                }
+
+                if (event.data.transactionType == "updateTime") {
+                  document.getElementById("timestamp").innerHTML = event.data.timestamp;
+                  document.getElementById("timestamp2").innerHTML = event.data.timestamp;
+                }
+            });
+        </script>
+
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    </head>
+    <style>
+
+    </style>
+    <body>
+
+      <div id='axonOverlay' style='display:none;text-align:right;'>
+        <div style='color:#ffff;font-weight:bold;font-size:1.6rem;height:100px;position:relative;'>
+          <img src='images/axon.png' width='5%' height='auto' style='padding:5px;float:right;'>
+          <div style="font-family: 'Roboto Mono', monospace;padding-top:2.5px;padding-right:100px;">
+            <span id='timestamp'>2020-09-29 T18:29</span>
+            <br>
+            <span id='serial'>AXON BODY 2 X81020805</span>
+          </div>
+        </div>
+      </div>
+
+      <div id='revealOverlay' style='display:none;text-align:right;'>
+        <div style='color:#ffff;font-weight:bold;font-size:1.4rem;height:100px;position:relative;'>
+          <div style="font-family: 'Roboto Mono', monospace;padding-top:85vh;padding-right:100px;">
+            <span id='serial'>249105</span>
+            <br>
+            <span id='timestamp2'>2020/10/09 17:44:32</span>
+          </div>
+        </div>
+      </div>
+
+    </body>
+</html>
