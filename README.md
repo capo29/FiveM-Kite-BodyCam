@@ -1,5 +1,8 @@
 # Axon Body Cam Script
 
+<img width="281" height="116" alt="image" src="https://github.com/user-attachments/assets/af6f1b43-b9f9-4415-b3d7-34ed4632be67" />
+(ignore the image lol)
+
 FiveM bodycam script with auto-trigger support for police vehicles. Toggle it manually or let it auto-start when you hit the lights.
 
 ## Features
